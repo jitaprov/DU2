@@ -26,7 +26,6 @@ Budeme pracovat se třídami:
 
 """
 
-ADAM JE GEJ
 
 """
 

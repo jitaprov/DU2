@@ -5,6 +5,9 @@ class Matrix:
     10 bodů
     TODO: inicalizujte matici, zamyslete se, jaké by měla mít privátní atributy a jestli nějaké potřebuje vystavovat
     """
+    def __init__(self, matrix):
+        self.matrix = matrix
+        
 
     """
     10 bodů + max 10 bonusových bodů za hezkost
@@ -28,4 +31,20 @@ class Matrix:
     ————— ————— —————
     """
     def print(self):
-        pass
+        print(len(self.matrix)* " —" )
+        for row in self.matrix:
+            print("|", end="")
+            for column in row:
+                print(column, end="|")
+            print()
+            print(len(self.matrix)* " —" )
+            
+            
+            
+            
+if __name__ == "__main__":
+    matice1 = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    matice1.print()
+             
+            
+                

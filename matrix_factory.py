@@ -1,6 +1,7 @@
 import random
 from matrix import Matrix
 
+
 # Továrna na matice, má vždy pevně stanovené dimenze maticí - všechny matice čtvercové a jsou stejného rozměru (1x1, 2x2, 3x3, 4x4, ...)
 class MatrixFactory:
 
@@ -8,7 +9,11 @@ class MatrixFactory:
     10 bodů
     TODO: Inicializujte MatrixFactory. Jaké atributy bude potřebovat továrna na matice? Potřebuje nějaké vystavovat?
     """
+    def __init__(self, size):
+        self._size = size
+        self._storage = []
 
+        
     """
     10 bodů
     TODO:
@@ -16,8 +21,15 @@ class MatrixFactory:
     Novou matici potom přidá do skladu matic. Náhodný prvek dostanete pomocí random.radint(dolni_hranice, horni_hranice)
     """
     def create_random_matrix(self):
-        pass
-
+        matrix = []
+        for _ in range(self._size):
+            row = []
+            for _ in range(self._size):
+                row.append(random.randint(0, 9))
+            matrix.append(row)
+        matrix = Matrix(matrix)
+        self._storage.append(matrix)
+        
     """
     5 bodů
     TODO:
@@ -42,8 +54,13 @@ class MatrixFactory:
     Když je seznam matic prázdný, tak vypíše, že žádná továrna žádnou matici nemá.
     """
     def print_all_matrices(self):
-        pass
-
+        if self._storage == []:
+            print("němame")
+            return
+        for i in range(len(self._storage)):
+            print("Index", i)
+            self._storage[i].print()
+            print()
     """
     5 bodů
     TODO:
@@ -80,3 +97,13 @@ class MatrixFactory:
     """
     def create_by_multiplication(self, first_matrix_index, second_matrix_index):
         pass
+    
+    
+
+if __name__ == "__main__":
+    tovarna = MatrixFactory(4)
+    tovarna.create_random_matrix()
+    tovarna.create_random_matrix()
+    tovarna.create_random_matrix()
+    
+    tovarna.print_all_matrices()
