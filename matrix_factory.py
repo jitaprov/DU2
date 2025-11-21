@@ -68,7 +68,12 @@ class MatrixFactory:
     Když je seznam matic prázdný, tak vypíše, že žádná továrna žádnou matici nemá.
     """
     def print_last(self):
-        pass
+        if self._storage == []:
+            print("němame")
+            return
+        print("last matrix")
+        self._storage[-1].print()
+        
 
 
     """
@@ -79,7 +84,18 @@ class MatrixFactory:
     Můžete předpokládat, že matice na indexech existují nebo vypsat hlášku, že matice na takových indexech nejsou
     """
     def create_by_sum(self, first_matrix_index, second_matrix_index):
-        pass
+        if first_matrix_index >= len(self._storage) or second_matrix_index >= len(self._storage):
+            print("němame")
+            return
+        sum_matrix = []
+        for i in range(self._size):
+            row = []
+            for j in range(self._size):
+                row.append(self._storage[first_matrix_index].matrix[i][j] + self._storage[second_matrix_index].matrix[i][j])
+            sum_matrix.append(row)
+            
+        sum_matrix = Matrix(sum_matrix)
+        self._storage.append(sum_matrix)
 
 
     # Můžete a nemusíte využít, pomocná metoda pro create_by_multiplication. Případně smažte
@@ -101,9 +117,11 @@ class MatrixFactory:
     
 
 if __name__ == "__main__":
-    tovarna = MatrixFactory(4)
+    tovarna = MatrixFactory(2)
     tovarna.create_random_matrix()
     tovarna.create_random_matrix()
     tovarna.create_random_matrix()
+    tovarna.create_by_sum(1,2)
     
-    tovarna.print_all_matrices()
+    print(tovarna._storage)
+    tovarna.print_last()

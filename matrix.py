@@ -40,6 +40,9 @@ class Matrix:
             print(len(self.matrix)* " —" )
             
             
+    def __repr__(self):
+       return str(self.matrix)
+            
             
             
 if __name__ == "__main__":
