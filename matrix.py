@@ -30,24 +30,33 @@ class Matrix:
    |    1|   22|45648|
     ————— ————— —————
     """
+
     def print(self):
-        print(len(self.matrix)* " —" )
+        length = 0
+        for row in self.matrix:
+            length = max(max(row), length)
+        print(length)
+        print(len(self.matrix)* (" " + "—" * len(str(length))))
         for row in self.matrix:
             print("|", end="")
             for column in row:
-                print(column, end="|")
+                print(" " * (len(str(length)) - len(str(column))), column, sep="", end="|")
             print()
-            print(len(self.matrix)* " —" )
-            
-            
+            print(len(self.matrix)* (" " + "—" * len(str(length))))
+     
+    
     def __repr__(self):
        return str(self.matrix)
             
             
             
 if __name__ == "__main__":
-    matice1 = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    matice1 = Matrix([[1, 25436, 3], [4, 5, 74656], [7, 8, 9]])
     matice1.print()
              
+             
+             
+             
+     
             
                 
