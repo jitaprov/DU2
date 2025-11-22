@@ -97,11 +97,6 @@ class MatrixFactory:
         sum_matrix = Matrix(sum_matrix)
         self._storage.append(sum_matrix)
 
-
-    # Můžete a nemusíte využít, pomocná metoda pro create_by_multiplication. Případně smažte
-    def _multiplication_partial_sum(self, first_matrix, second_matrix, first_matrix_row, second_matrix_col):
-        pass
-
     """
     15 bodů
     TODO:
@@ -112,16 +107,33 @@ class MatrixFactory:
     Doporučuji využít separátní funkci, která bude dostane řádek první matice a sloupec druhé matice a vrátí prvek, který vznikne součtem součinů.
     """
     def create_by_multiplication(self, first_matrix_index, second_matrix_index):
-        pass
+        if first_matrix_index >= len(self._storage) or second_matrix_index >= len(self._storage):
+            print("němame")
+            return
+        mul_matrix = []
+        matrix1 = self._storage[first_matrix_index].matrix
+        matrix2 = self._storage[second_matrix_index].matrix
+        for i in range(self._size):
+            row = []
+            for j in range(self._size):
+                number = 0
+                for k in range(self._size):
+                    number += matrix1[i][k] * matrix2[k][j]
+                row.append(number)
+            mul_matrix.append(row)
+        mul_matrix = Matrix(mul_matrix)
+        self._storage.append(mul_matrix)
+        
     
     
 
 if __name__ == "__main__":
     tovarna = MatrixFactory(2)
-    tovarna.create_random_matrix()
-    tovarna.create_random_matrix()
-    tovarna.create_random_matrix()
-    tovarna.create_by_sum(1,2)
+    
+    tovarna._storage.append(Matrix([[1,2],[3,4]]))
+    tovarna._storage.append(Matrix([[5,6],[7,8]]))
+    tovarna.create_by_multiplication(0,1)
+    
     
     print(tovarna._storage)
-    tovarna.print_last()
+    tovarna.print_all_matrices()
