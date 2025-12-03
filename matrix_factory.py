@@ -126,7 +126,8 @@ if __name__ == "__main__":
     tovarna._storage.append(Matrix([[1,2],[3,4]]))
     tovarna._storage.append(Matrix([[5,6],[7,8]]))
     tovarna.create_by_multiplication(0,1)
+
     
-    
-    print(tovarna._storage)
-    tovarna.print_all_matrices()
+    tovarna.print_last()
+    #print(tovarna._storage)
+    #tovarna.print_all_matrices()

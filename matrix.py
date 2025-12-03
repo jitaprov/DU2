@@ -5,7 +5,7 @@ class Matrix:
     10 bodů
     TODO: inicalizujte matici, zamyslete se, jaké by měla mít privátní atributy a jestli nějaké potřebuje vystavovat
     """
- def __init__(self, matrix):
+    def __init__(self, matrix):
         self.matrix = matrix
 
     """
