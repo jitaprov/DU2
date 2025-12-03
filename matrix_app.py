@@ -30,7 +30,9 @@ class MatrixApp:
     10 bodů
     Inicializujte MatrixApp, zamyslete, jaké atributy bude potřebovat. Jak budete reprezentovat neexistující továrnu?
     """
-
+    def __init__(self):
+        self._factory = None
+        
     """
     10 bodů
     TODO:
@@ -47,7 +49,14 @@ class MatrixApp:
         6: Ukončit program
     """
     def choose_option(self):
-        pass
+        print("co pro Vás mohu udělat?")
+        option = int(input("zvolte mžnost: "))
+        if 0 < option < 7:
+            print("jistě, provedu!")
+            return option
+        print("si naozaj chorý? němame")
+        return self.choose_option()
+
    
     """
     10 bodů
@@ -55,10 +64,37 @@ class MatrixApp:
     Nekonečný cyklus zpostředkovájící komunikaci s uživatelem. Nejdříve zkontrolujte zda existuje nějaká továrna a případně ji vytvořte.
     Pokud potřebujete nějaké další informace - dimenze nové továrny, indexy matic, která se mají sčítat, tak vždy vypište prompt uživateli a požadovaná čísla načtěte.
     """
+    def _get_index(self):
+        print("pokud jste chtěl vědet, jaké matice jsou v nabídce, měl jste zvolit možnost 1, teď Vám zbývá jen hádat ")
+        return int(input("první matice: ")), int(input("druhá matice: ")) 
+
     def start_app(self):
-        #while(True):
-        pass
-        
+        print("vítejte v továrně na matice")
+        while(True):
+            if self._factory == None:
+                self._factory = MatrixFactory(int(input("aktuálně nemáte žádnou továrnu, matice jakého rozměru byste si přál/a vytvářet? ")))
+            option = self.choose_option()
+            if option == 1:
+                self._factory.print_all_matrices()
+            elif option == 2:
+                self._factory.create_random_matrix()
+                print("vytvořil jsem novou náhodnou matici")
+            elif option == 3:
+                index = self._get_index()
+                self._factory.create_by_sum(index[0], index[1])
+                print("vytvořil jsem novou matici pomocí součtu")
+            elif option == 4:
+                index = self._get_index()
+                self._factory.create_by_multiplication(index[0], index[1])
+                print("vytvořil jsem novou matici pomocí součinu")
+            elif option == 5:
+                self._factory = None
+                print("zrušil jsem starou továrnu")
+            elif option == 6:
+                print("tak zdar:) ")
+                exit()
+
+                
 # Automaticky se zavolá při spuštění souboru
 if __name__=="__main__":
     m = MatrixApp()
